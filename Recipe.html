@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Recipe API Test</title>
+        <title>Random.ly</title>
         <meta charset="utf-8">
     </head>
     <body>
-        <h1>Recipe API Test</h1>
+        <h1>Random.ly</h1>
         <select id="categoryList" onchange="selectCategory();">
             <option hidden>Please make your selection...</option>
         </select>
@@ -13,6 +13,9 @@
         <p></p>
         <input type="text" id="searchBox" placeholder="Search for Recipe"></input>
         <input type="button" value="Search" onclick="searchMeal();">
+        <input type="button" value="I'm Feeling Lucky" onclick="randomMeal();">
+        <p id=foundMealName> </p>
+        <p></p>
         <p id=foundMealDescription> </p>
         <script src="RecipeAPI.js" defer></script>
     </body>
