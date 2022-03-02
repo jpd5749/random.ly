@@ -11,6 +11,7 @@ let spotifyList = document.getElementById("spotifyList");
 var client_id = 'd8cd43d646624fe085630310d15cc9e9';
 var client_secret = '193c9a9963454cf488aaad0efdc54442';
 var spotify_token;
+let spotifyListFilled = false;
 
 
 //only called once when the page is loaded
@@ -160,32 +161,36 @@ function spotifyToken()
 
 function spotifyGetGenres()
 {
-    const request = new XMLHttpRequest();
-    request.open("GET","https://api.spotify.com/v1/recommendations/available-genre-seeds",true);
-    request.setRequestHeader("Content-Type", "application/json");
-    request.setRequestHeader("Authorization", "Bearer " + spotify_token +"");
+    if (!spotifyListFilled)
+    {
+        const request = new XMLHttpRequest();
+        request.open("GET","https://api.spotify.com/v1/recommendations/available-genre-seeds",true);
+        request.setRequestHeader("Content-Type", "application/json");
+        request.setRequestHeader("Authorization", "Bearer " + spotify_token +"");
 
-    request.onload = function() {
-        data = JSON.parse(this.response);
+        request.onload = function() {
+            data = JSON.parse(this.response);
 
-        if(request.status == 200)
-        {
-            data.genres.forEach(
-                genre=>
-                {
-                    console.log(genre);
-                    let option = document.createElement("option");
-                    //set the value to the description for ease of use of the "selectCategory" function
-                    option.innerHTML = genre;
-                    spotifyList.appendChild(option);
-                }
-            );
-        }
-        else{
-            console.log(`Error occurced: Status: ${request.status}`);
-        }
-    };
-    request.send();
+            if(request.status == 200)
+            {
+                data.genres.forEach(
+                    genre=>
+                    {
+                        console.log(genre);
+                        let option = document.createElement("option");
+                        //set the value to the description for ease of use of the "selectCategory" function
+                        option.innerHTML = genre;
+                        spotifyList.appendChild(option);
+                    }
+                );
+            }
+            else{
+                console.log(`Error occurced: Status: ${request.status}`);
+            }
+        };
+        request.send();
+        spotifyListFilled = true;
+    }
 }
 
 //populate the select when the page loads
