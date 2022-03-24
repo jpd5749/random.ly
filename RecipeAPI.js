@@ -11,6 +11,7 @@ let spotifyList = document.getElementById("spotifyList");
 var client_id = 'd8cd43d646624fe085630310d15cc9e9';
 var client_secret = '193c9a9963454cf488aaad0efdc54442';
 var spotify_token;
+var spotify_expire;
 let spotifyListFilled = false;
 
 
@@ -150,6 +151,7 @@ function spotifyToken()
         if(request.status == 200)
         {
             spotify_token = data.access_token;
+            spotify_expire = data.expires_in;
         }
         else{
             console.log(`Error occurced: Status: ${request.status}`);
@@ -157,6 +159,7 @@ function spotifyToken()
         }
     };
     request.send();
+    spotifyWait();
 }
 
 function spotifyGetGenres()
@@ -190,6 +193,20 @@ function spotifyGetGenres()
         };
         request.send();
         spotifyListFilled = true;
+    }
+}
+
+function spotifyWait()
+{
+    //loop that requests a new token every hour
+    if(true)
+    {
+        setTimeout(function(){
+            setTimeout(function(){
+                spotifyToken();
+            }, (spotify_expire * 1000) - 500);
+        }, 500);
+
     }
 }
 
