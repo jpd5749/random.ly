@@ -23,7 +23,6 @@ function populateSelect()
 
     request.onload = function() {
         data = JSON.parse(this.response);
-
         if(request.status == 200)
         {
             //index value that iterates through the loop
