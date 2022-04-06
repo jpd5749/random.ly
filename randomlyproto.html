@@ -86,8 +86,13 @@
     <div style="background-color:#28282E" class="jumbotron">
 <h1 style="color:#FFFFFF" class="display-4">random.<strong style="color:#FF0090 ">movies</strong>&nbsp;</h1>
 <span class="input-group mb-3">
-      <input type="text" class="form-control" placeholder="normal sized input group" aria-describedby="basicaddon1">
-</span><a style="background-color:#FF0090" class="btn btn-primary btn-lg" href="#" role="button"><strong>Randomize</strong>&nbsp;</a>
+      <input type="text" class="form-control" placeholder="normal sized input group" aria-describedby="basicaddon1" id="movieSearchBox">
+</span><a style="background-color:#FF0090" class="btn btn-primary btn-lg" href="#" role="button" onclick="selectMovieGenre();"><strong>Randomize</strong>&nbsp;</a>
+</span><a style="background-color:#FF0090" class="btn btn-primary btn-lg" href="#" role="button" onclick="searchMovie();"><strong>Search</strong>&nbsp;</a>
+
+<select id="movieList">
+            <option hidden>Please make your selection...</option>
+</select>
       
 <div class="dropdown show"><a style="color:#FFFFFF" class="btn btn-lg dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Genre&nbsp;&nbsp; </a> <a style="color:#FFFFFF" class="btn btn-lg dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Length&nbsp; </a>
         <div class="dropdown-menu">
@@ -104,6 +109,15 @@
         <a class="dropdown-item" href="#">Seperated Link</a> </div>
       </div>
       <p>&nbsp;</p>
+      
+<div class="tagline" id="movieName">
+      </div>
+</div>
+<div class="hero_header" id="movieDescription">
+      </div>
+</div>
+
+<div class="dropdown show">
 </div>
     <h2 class="hidden">About</h2>
   </section>
@@ -116,6 +130,9 @@
 </span><a style="background-color:#FFCB00" class="btn btn-primary btn-lg" href="#" role="button" onclick="searchMeal();"><strong>Search&nbsp;</strong></a>
       
       <div class="btn-group dropup">
+        <select id="categoryList">
+            <option hidden>Please make your selection...</option>
+        </select>
 <div class="dropdown-menu">
           <h6 class="dropdown-header">Dropdown header 1</h6>
           <a class="dropdown-item" href="#">First Link</a> <a class="dropdown-item disabled" href="#" >Disabled Link</a> <a class="dropdown-item" href="#">Something else here</a>
@@ -129,12 +146,6 @@
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Seperated Link</a> </div>
       </div>
-      <select id="categoryList" onchange="selectCategory();">
-            <option hidden>Please make your selection...</option>
-        </select>
-<div class="hero_header" id="categoryDescription">
-      </div>
-</div>
       <div class="dropdown show">
 <div class="tagline" id="foundMealName">
       </div>

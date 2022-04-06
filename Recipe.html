@@ -14,6 +14,9 @@
         <input type="text" id="searchBox" placeholder="Search for Recipe"></input>
         <input type="button" value="Search" onclick="searchMeal();">
         <input type="button" value="I'm Feeling Lucky" onclick="randomMeal();">
+        <p></p>
+        <img style="max-width: 450px; max-height: 300px" src="" id="mealImage"></img>
+        <p></p>
         <p id=foundMealName> </p>
         <p></p>
         <p id=foundMealDescription> </p>
@@ -21,6 +24,20 @@
         <select id="spotifyList" onclick="spotifyGetGenres();">
             <option hidden>Please make your selection...</option>
         </select>
+        <h2>Movie Genres</h2>
+        <select id="movieList">
+            <option hidden>Please make your selection...</option>
+        </select>
+        <p></p>
+        <input type="text" id="movieSearchBox" placeholder="Search for Movie"></input>
+        <input type="button" value="Search" onclick="searchMovie();">
+        <input type="button" value="I'm Feeling Lucky" onclick="selectMovieGenre();">
+        <p></p>
+        <img style="max-width: 450px; max-height: 300px" src="" id="movieImage"></img>
+        <p></p>
+        <p id=movieName> </p>
+        <p></p>
+        <p id=movieDescription> </p>
         <script src="RecipeAPI.js" defer></script>
     </body>
 </html>
