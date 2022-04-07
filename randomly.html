@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Random.Ly</title>
+<link href="css/singlePageTemplate.css" rel="stylesheet" type="text/css">
+<link href="css/bootstrap-4.4.1.css" rel="stylesheet" type="text/css">
+<link href="jQueryAssets/jquery.ui.core.min.css" rel="stylesheet" type="text/css">
+<link href="jQueryAssets/jquery.ui.theme.min.css" rel="stylesheet" type="text/css">
+<!--The following script tag downloads a font from the Adobe Edge Web Fonts server for use within the web page. We recommend that you do not modify it.-->
+<script src="jQueryAssets/jquery-1.11.1.min.js"></script> <script>var __adobewebfontsappname__="dreamweaver"</script>
+<script src="http://use.edgefonts.net/source-sans-pro:n2:default.js" type="text/javascript"></script>
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+
+
+
+<!-- Main Container -->
+
+
+<!-- Navigation -->
+  
+  <!-- Hero Section -->
+  <!-- About Section -->
+  
+	  <style>
+	  div {
+	  background-color: #28282E; 
+	  padding-left: 25px;
+	  padding-top: 10px;
+	  color: #DCDCDC;
+	  font-size: 25px;
+
+	  }
+	  </style>
+	  <div class="col-xl-12" style="min-width: 1040px">
+		  <header style="background-color: #28282E; border-bottom-color: #28282E;">
+		  random<strong style="color:#8C8C8C">.ly</strong>
+  		  </header>
+</div>
+<section class="about" id="about" style="min-width: 1040px">
+<div style="background-color:#28282E" class="jumbotron">
+  <div class="input-group mb-3">
+        <div class="input-group-prepend"> </div>
+</div>
+<h1 style="color:#FFFFFF" class="display-4">random.<strong style="color:#00FF6B">music</strong>&nbsp;</h1>
+<span class="input-group mb-3">
+<input type="text" class="form-control" placeholder="" aria-describedby="basicaddon1">
+</span>
+<button type="button" class="rounded-0; " style="background-color:#00FF6B; color:white; vertical-align: top">Randomize</button>
+<button type="button" class="rounded-0; " style="background-color:#00FF6B; color:white; vertical-align: top">Search</button>
+      <select id="spotifyList" onclick="spotifyGetGenres();" class="rounded; " style="background-color: transparent; color: white; font-size: 29px; ">
+        <option hidden>Genre</option>
+      </select>
+<div class="container" style="max-width: 1100px; max-height: 500px">
+  <h3> </h3>
+  <p style = "position: relative; left:240px; max-width: 650px"> </p>
+	  <strong><img style = "position:absolute; top:420px; max-width:225px; max-height:350px" src="" alt="" class="rounded"/></strong></div>
+</div>
+<h2 class="hidden">About</h2>
+</section>
+<section class="about" id="about2" style="min-width: 1040px">
+    <div style="background-color:#28282E" class="jumbotron">
+<h1 style="color:#FFFFFF" class="display-4">random.<strong style="color:#FF0090 ">movies</strong>&nbsp;</h1>
+<span class="input-group mb-3">
+      <input id="movieSearchBox" type="text" class="form-control" placeholder="" aria-describedby="basicaddon1">
+</span>
+      <button type="button" onclick="selectMovieGenre();" class="rounded-0; " style="background-color:#FF0090; color:white; vertical-align: top">Randomize</button>
+      <button type="button" onclick="searchMovie();" class="rounded-0; " style="background-color:#FF0090; color:white; vertical-align: top">Search</button>
+      <select id="movieList" class="rounded; " style="background-color: transparent; color: white; font-size: 29px; ">
+        <option hidden>Genre</option>
+      </select>
+
+<div class="container" style="max-width: 1100px; max-height: 500px">
+		<h3 id="movieName"> </h3>
+  <p id="movieDescription" style = "position: relative; left:240px; max-width: 650px"> </p>
+	  <strong><img id="movieImage" style = "position:absolute; top:1285px; max-width:225px; max-height:350px" src=" " alt="" class="rounded"/></strong></div>
+    </div>
+    <h2 class="hidden">About</h2>
+</section>
+  <section class="about" id="about3" style="min-width: 1040px">
+    <div style="background-color:#28282E" class="jumbotron">
+<h1 style="color:#FFFFFF" class="display-4">random.<strong style="color:#FFCB00">food</strong>&nbsp;</h1>
+<span class="input-group mb-3">
+      <input type="text" class="form-control" placeholder="" aria-describedby="basicaddon1" id="searchBox">
+</span>
+      <button type="button" onclick="randomMeal();" class="rounded-0; " style="background-color:#FFCB00; color:white; vertical-align: top">Randomize</button>
+      <button type="button" onclick="searchMeal();" class="rounded-0; " style="background-color:#FFCB00; color:white; vertical-align: top">Search</button>
+      <select id="categoryList" onchange="selectCategory();" class="rounded; " style="background-color: transparent; color: white; font-size: 29px; ">
+        <option hidden>Dish</option>
+      </select>
+<div class="container" style="max-width: 1100px; max-height: 500px;">
+	  <h3 id="foundMealName"> </h3>
+  <h5 id="foundMealDescription" style = "position: relative;left:240px; max-width: 700px"> </h5>
+	  <strong><img style = "position:absolute; top:2150px; max-width:225px; max-height:350px" src="" id="mealImage" alt="" class="rounded"/></strong></div>
+</div>
+<h2 class="hidden">About</h2>
+  </section>
+  <section style="color:#9B9B9B ; min-width: 1040px">Created by Joeseph Downey, Ian Rothermel, Yifei Jiang</section>
+  <!-- Stats Gallery Section -->
+  
+  <!-- Parallax Section -->
+  
+  <!-- More Info Section -->
+  <!-- Footer Section -->
+  
+  <!-- Copyrights Section -->
+
+<!-- Main Container Ends -->
+<script src="js/jquery-3.4.1.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap-4.4.1.js"></script>
+<script src="randomly.js"></script>
+
+</body>
+	
+</html>
