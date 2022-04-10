@@ -13,6 +13,10 @@ let movieDescription = document.getElementById("movieDescription");
 let movieSearchBox = document.getElementById("movieSearchBox");
 let movieImage = document.getElementById("movieImage");
 let mealImage = document.getElementById("mealImage");
+let spotifySearchBox = document.getElementById("spotifySearchBox");
+let songName = document.getElementById("songName");
+let songDescription = document.getElementById("songDescription");
+let songImage = document.getElementById("songImage");
 //spotify credentials
 var client_id = 'd8cd43d646624fe085630310d15cc9e9';
 var client_secret = '193c9a9963454cf488aaad0efdc54442';
@@ -85,8 +89,8 @@ function searchMeal()
             let foundMeal = data.meals[0];
 
             //variable that is the description of the selected
-            let nameText = document.createTextNode("Meal Name: " + foundMeal.strMeal);
-            let descriptionText = document.createTextNode("Instructions: " + foundMeal.strInstructions);
+            let nameText = document.createTextNode(foundMeal.strMeal);
+            let descriptionText = document.createTextNode(foundMeal.strInstructions);
             //variable that is the first child of the paragraph
             let firstChild = foundMealName.childNodes[0];
             //replace the first child of the paragraph element
@@ -97,6 +101,15 @@ function searchMeal()
         }
         else{
             console.log(`Error occurced: Status: ${request.status}`);
+            //variable that is the description of the selected
+            let nameText = document.createTextNode("No Results");
+            let descriptionText = document.createTextNode(" ");
+            //variable that is the first child of the paragraph
+            let firstChild = foundMealName.childNodes[0];
+            foundMealName.replaceChild(nameText, firstChild);
+            let secondChild = foundMealDescription.childNodes[0];
+            foundMealDescription.replaceChild(descriptionText, secondChild);
+            mealImage.src = null;
         }
     };
 
@@ -148,6 +161,7 @@ function randomMeal()
                     foundMealName.replaceChild(nameText, firstChild);
                     let secondChild = foundMealDescription.childNodes[0];
                     foundMealDescription.replaceChild(descriptionText, secondChild);
+                    mealImage.src = null;
                 }
         
                 else if(request2.status == 200 && data2.meals != null)
@@ -168,12 +182,30 @@ function randomMeal()
                 }
                 else{
                     console.log(`Error occurced: Status: ${request2.status}`);
+                    //variable that is the description of the selected
+                    let nameText = document.createTextNode("No Results");
+                    let descriptionText = document.createTextNode(" ");
+                    //variable that is the first child of the paragraph
+                    let firstChild = foundMealName.childNodes[0];
+                    foundMealName.replaceChild(nameText, firstChild);
+                    let secondChild = foundMealDescription.childNodes[0];
+                    foundMealDescription.replaceChild(descriptionText, secondChild);
+                    mealImage.src = null;
                 }
             };
             request2.send();
         }
         else{
             console.log(`Error occurced: Status: ${request.status}`);
+            //variable that is the description of the selected
+            let nameText = document.createTextNode("No Results");
+            let descriptionText = document.createTextNode(" ");
+            //variable that is the first child of the paragraph
+            let firstChild = foundMealName.childNodes[0];
+            foundMealName.replaceChild(nameText, firstChild);
+            let secondChild = foundMealDescription.childNodes[0];
+            foundMealDescription.replaceChild(descriptionText, secondChild);
+            mealImage.src = null;
         }
     };
 
@@ -224,6 +256,7 @@ function spotifyGetGenres()
                         let option = document.createElement("option");
                         //set the value to the description for ease of use of the "selectCategory" function
                         option.innerHTML = genre;
+                        option.value = genre;
                         spotifyList.appendChild(option);
                     }
                 );
@@ -235,6 +268,93 @@ function spotifyGetGenres()
         request.send();
         spotifyListFilled = true;
     }
+}
+
+function spotifySearch()
+{
+    const request = new XMLHttpRequest();
+        request.open("GET","https://api.spotify.com/v1/search?q=" + spotifySearchBox.value + "&type=track",true);
+        request.setRequestHeader("Content-Type", "application/json");
+        request.setRequestHeader("Authorization", "Bearer " + spotify_token +"");
+
+        request.onload = function() {
+            data = JSON.parse(this.response);
+
+            if(request.status == 200)
+            {
+                //variable that is the description of the selected
+                let nameText = document.createTextNode(data.tracks.items[0].name);
+                let descriptionText = document.createTextNode("Click Here to Open Spotify.");
+                //variable that is the first child of the paragraph
+                let firstChild = songName.childNodes[0];
+                let secondFirstChild = songDescription.childNodes[0];
+                //now, replace the first child with the new text node
+                songName.replaceChild(nameText, firstChild);
+                songDescription.replaceChild(descriptionText, secondFirstChild);
+                songDescription.href = data.tracks.items[0].external_urls.spotify;
+                songImage.src = data.tracks.items[0].album.images[0].url;
+                
+            }
+            else{
+                console.log(`Error occurced: Status: ${request.status}`);
+                //variable that is the description of the selected
+                let nameText = document.createTextNode("No Results");
+                let descriptionText = document.createTextNode(" ");
+                //variable that is the first child of the paragraph
+                let firstChild = songName.childNodes[0];
+                let secondFirstChild = songDescription.childNodes[0];
+                //now, replace the first child with the new text node
+                songName.replaceChild(nameText, firstChild);
+                songDescription.replaceChild(descriptionText, secondFirstChild);
+                songDescription.href = " ";
+                songImage.src = " ";
+            }
+        };
+    request.send();
+}
+
+function spotifyRandomize()
+{
+    const request = new XMLHttpRequest();
+        request.open("GET","https://api.spotify.com/v1/recommendations?market=US&seed_genres=" + spotifyList.value,true);
+        request.setRequestHeader("Content-Type", "application/json");
+        request.setRequestHeader("Authorization", "Bearer " + spotify_token +"");
+
+        request.onload = function() {
+            data = JSON.parse(this.response);
+
+            if((request.status == 200) && (data.tracks[0] != null))
+            {
+                let random = Math.floor(Math.random() * data.tracks.length);
+                //variable that is the description of the selected
+                let nameText = document.createTextNode(data.tracks[random].name);
+                let descriptionText = document.createTextNode("Click Here to Open Spotify.");
+                //variable that is the first child of the paragraph
+                let firstChild = songName.childNodes[0];
+                let secondFirstChild = songDescription.childNodes[0];
+                //now, replace the first child with the new text node
+                songName.replaceChild(nameText, firstChild);
+                songDescription.replaceChild(descriptionText, secondFirstChild);
+                songDescription.href = data.tracks[random].external_urls.spotify;
+                songImage.src = data.tracks[random].album.images[0].url;
+                
+            }
+            else{
+                console.log(`Error occurced: Status: ${request.status}`);
+                //variable that is the description of the selected
+                let nameText = document.createTextNode("No Results");
+                let descriptionText = document.createTextNode(" ");
+                //variable that is the first child of the paragraph
+                let firstChild = songName.childNodes[0];
+                let secondFirstChild = songDescription.childNodes[0];
+                //now, replace the first child with the new text node
+                songName.replaceChild(nameText, firstChild);
+                songDescription.replaceChild(descriptionText, secondFirstChild);
+                songDescription.href = null;
+                songImage.src = null;
+            }
+        };
+    request.send();
 }
 
 function spotifyWait()

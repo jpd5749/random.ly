@@ -54,17 +54,19 @@
 </div>
 <h1 style="color:#FFFFFF" class="display-4">random.<strong style="color:#00FF6B">music</strong>&nbsp;</h1>
 <span class="input-group mb-3">
-<input type="text" class="form-control" placeholder="" aria-describedby="basicaddon1">
+<input id="spotifySearchBox" type="text" class="form-control" placeholder="" aria-describedby="basicaddon1">
 </span>
-<button type="button" class="rounded-0; " style="background-color:#00FF6B; color:white; vertical-align: top">Randomize</button>
-<button type="button" class="rounded-0; " style="background-color:#00FF6B; color:white; vertical-align: top">Search</button>
+<button type="button" onclick="spotifyRandomize();" class="rounded-0; " style="background-color:#00FF6B; color:white; vertical-align: top">Randomize</button>
+<button type="button" onclick="spotifySearch();" class="rounded-0; " style="background-color:#00FF6B; color:white; vertical-align: top">Search</button>
       <select id="spotifyList" onclick="spotifyGetGenres();" class="rounded; " style="background-color: transparent; color: white; font-size: 29px; ">
         <option hidden>Genre</option>
       </select>
 <div class="container" style="max-width: 1100px; max-height: 500px">
-  <h3> </h3>
-  <p style = "position: relative; left:240px; max-width: 650px"> </p>
-	  <strong><img style = "position:absolute; top:420px; max-width:225px; max-height:350px" src="" alt="" class="rounded"/></strong></div>
+  <h3 id="songName"> </h3>
+  <p>
+  <a id="songDescription" href=" " style = "position: relative; left:240px; max-width: 650px"> </a>
+</p>
+	  <strong><img id="songImage" style = "position:absolute; top:420px; max-width:225px; max-height:350px" src=" " alt="" class="rounded"/></strong></div>
 </div>
 <h2 class="hidden">About</h2>
 </section>
