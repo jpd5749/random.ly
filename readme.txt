@@ -1,1 +1,1 @@
-readme text goes here
+This repository is made for academic purposes only and as part of the capstone course project.
